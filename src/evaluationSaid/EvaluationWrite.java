@@ -13,13 +13,16 @@ public class EvaluationWrite {
 
 	public static void main(String[] args) throws IOException, Throwable {
 
+		
+		
+		
 		Scanner sc = new Scanner(System.in);
 		HttpClient client = HttpClient.newHttpClient();
 
 		boolean exit = true;
 
 		while (exit) {
-    
+			System.out.println("***************************");
 			System.out.println(" 1- print API information  ");
 			int option = sc.nextInt();
 
@@ -37,6 +40,7 @@ public class EvaluationWrite {
 				String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFile.txt";
 
 				try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+					System.out.println("**********************************");
 
 					out.write(response.body());
 

@@ -1,0 +1,18 @@
+Write And Read API URL and save it in txt file
+
+
+An HTTP Client. :
+HttpClient client = HttpClient.newHttpClient();
+
+
+An HTTP request:
+HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ipinfo.io/161.185.160.39/geo")).build();
+
+
+
+An HTTP response:
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+search:
+System.out.println("Enter the word you want to search ");String input = sc.next();

@@ -19,7 +19,7 @@ public class EvaluationWrite {
 		boolean exit = true;
 
 		while (exit) {
-//java                       
+    
 			System.out.println(" 1- print API information  ");
 			int option = sc.nextInt();
 
@@ -34,7 +34,7 @@ public class EvaluationWrite {
 				System.out.println(response.body());
 
 				/* write json in file */
-				String path = "C:\\Users\\user002\\eclipse-workspace\\evaluationSaid\\" + "evaluationFile.txt";
+				String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFile.txt";
 
 				try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
 

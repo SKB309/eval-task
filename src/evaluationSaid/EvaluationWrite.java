@@ -19,7 +19,7 @@ public class EvaluationWrite {
 		boolean exit = true;
 
 		while (exit) {
-///
+//java
 			System.out.println(" 1- print API information  ");
 			int option = sc.nextInt();
 

@@ -15,7 +15,8 @@ public class WriteAndRead {
 
 		System.out.println("************************************");
 		System.out.println(" 1- print and save API information  ");
-		System.out.println(" 2- saveing API information  ");
+		System.out.println(" 2- saveing API information in txt file  ");
+		System.out.println(" 3- saveing API information in PDF file  ");
 		System.out.println(" 0 - Exit  ");
 		System.out.println("************************************");
 
@@ -35,7 +36,7 @@ public class WriteAndRead {
 
 	}
 
-	static void onWrite() throws Throwable, InterruptedException {
+	static void onWriteToTxt() throws Throwable, InterruptedException {
 
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ipinfo.io/161.185.160.39/geo")).build();
@@ -43,10 +44,10 @@ public class WriteAndRead {
 		/* write json in file */
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-		System.out.println("API data saved in txt file name:'evaluationFile'");
+		System.out.println("API data saved in txt file name:'evaluationFileTxt'");
 		System.out.println("___________________________________");
 
-		String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFile.txt";
+		String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFileTxt.txt";
 
 		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
 			System.out.println("___________________________________");
@@ -58,6 +59,32 @@ public class WriteAndRead {
 		}
 
 	}
+	
+	static void onWriteToPdf() throws Throwable, Exception {
+		
+		HttpClient client = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ipinfo.io/161.185.160.39/geo")).build();
+
+		/* write json in file */
+		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+		System.out.println("API data saved in pdf file name:'evaluationFilePdf'");
+		System.out.println("___________________________________");
+
+		String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFilePdf.pdf";
+
+		try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+			System.out.println("___________________________________");
+
+			out.write(response.body());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+		
+		
 	
 
 	static void wroungOption() {
@@ -92,8 +119,12 @@ public class WriteAndRead {
 
 			case 2:
 
-				onWrite();
+				onWriteToTxt();
 
+				break;
+				
+			case 3 :
+				onWriteToPdf();
 				break;
 
 			case 0:

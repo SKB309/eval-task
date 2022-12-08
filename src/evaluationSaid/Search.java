@@ -2,6 +2,13 @@ package evaluationSaid;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class Search {
@@ -16,7 +23,7 @@ public class Search {
 
 	}
 
-	static void searchTxt() throws FileNotFoundException {
+	static void searchTxt() throws Throwable, Exception {
 		boolean isExit = true;
 		while (isExit) {
 			Scanner sc = new Scanner(System.in);
@@ -32,7 +39,7 @@ public class Search {
 			int wordCount = 0;
 
 			// Reading the String of the file
-			Scanner sc1 = new Scanner(new FileInputStream("evaluationFile.txt"));
+			Scanner sc1 = new Scanner(new FileInputStream("evaluationFileTxt.txt"));
 			while (sc1.hasNextLine()) {
 				String word1 = sc1.nextLine();
 //     System.out.println(line);
@@ -42,12 +49,34 @@ public class Search {
 				}
 			}
 			if (word2) {
-				System.out.println("Text File contains the  word");
+				System.out.println("Text File contains the  word : " + input);
 				System.out.println("Number of word is: " + wordCount);
 				System.out.println("__________________________________");
 
+				HttpClient client = HttpClient.newHttpClient();
+				HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ipinfo.io/161.185.160.39/geo"))
+						.build();
+
+				/* write json in file */
+				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+				System.out.println("Search data saved in Txt file name:'evaluationSearchFileTxt'");
+				System.out.println("___________________________________________________");
+
+				String path = "C:\\Users\\user002\\Desktop\\search input\\" + "evaluationSearchFileTxtt.txt";
+
+				try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+					System.out.println("___________________________________");
+
+//					out.write(input);
+					out.write(response.body());
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			} else {
-				System.out.println("Text File does not contain the word");
+				System.out.println("Text File does not contain the word : " + input);
 				System.out.println("__________________________________");
 
 			}
@@ -68,6 +97,7 @@ public class Search {
 		boolean isExit = true;
 
 		while (isExit) {
+
 			Scanner sc = new Scanner(System.in);
 
 			System.out.println("**********************************");
@@ -84,19 +114,41 @@ public class Search {
 			Scanner sc1 = new Scanner(new FileInputStream("evaluationFilePdf.pdf"));
 			while (sc1.hasNextLine()) {
 				String word1 = sc1.nextLine();
-//     System.out.println(line);
+            //     System.out.println(line);
 				if (word1.indexOf(input) != -1) {
 					word2 = true;
 					wordCount = wordCount + 1;
 				}
 			}
 			if (word2) {
-				System.out.println("PDF File contains the  word");
+				System.out.println("PDF File contains the  word : " + input);
 				System.out.println("Number of word is: " + wordCount);
 				System.out.println("__________________________________");
 
+				HttpClient client = HttpClient.newHttpClient();
+				HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ipinfo.io/161.185.160.39/geo"))
+						.build();
+
+				HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+				System.out.println("API data saved in pdf file name:'evaluationSearchFilePdf'");
+				System.out.println("___________________________________________________");
+
+				String path = "C:\\Users\\user002\\Desktop\\search input\\" + "evaluationSearchFilePdf.pdf";
+
+				try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
+					System.out.println("___________________________________");
+
+//					out.write(input);
+					out.write(response.body());
+
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			} else {
-				System.out.println("PDF File does not contain the word");
+				System.out.println("PDF File does not contain the word : " + input);
 				System.out.println("__________________________________");
 
 			}

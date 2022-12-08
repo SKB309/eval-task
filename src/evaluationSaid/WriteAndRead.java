@@ -45,7 +45,7 @@ public class WriteAndRead {
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
 		System.out.println("API data saved in txt file name:'evaluationFileTxt'");
-		System.out.println("___________________________________");
+		System.out.println("___________________________________________________");
 
 		String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFileTxt.txt";
 
@@ -59,9 +59,9 @@ public class WriteAndRead {
 		}
 
 	}
-	
+
 	static void onWriteToPdf() throws Throwable, Exception {
-		
+
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ipinfo.io/161.185.160.39/geo")).build();
 
@@ -69,7 +69,7 @@ public class WriteAndRead {
 		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
 		System.out.println("API data saved in pdf file name:'evaluationFilePdf'");
-		System.out.println("___________________________________");
+		System.out.println("___________________________________________________");
 
 		String path = "C:\\Users\\user002\\eclipse-workspace\\saidevaluation\\" + "evaluationFilePdf.pdf";
 
@@ -83,9 +83,6 @@ public class WriteAndRead {
 		}
 
 	}
-		
-		
-	
 
 	static void wroungOption() {
 		System.out.println("Wroung option!!!!!!!! please Enter correct option");
@@ -122,8 +119,8 @@ public class WriteAndRead {
 				onWriteToTxt();
 
 				break;
-				
-			case 3 :
+
+			case 3:
 				onWriteToPdf();
 				break;
 
